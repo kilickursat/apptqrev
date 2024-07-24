@@ -277,7 +277,7 @@ def main():
         # Clean numeric columns
         numeric_columns = ['Working pressure [bar]', 'Revolution [rpm]', 'Thrust force [kN]', 'Chainage', 'Relative time', 'Weg VTP [mm]', 'SR Position [Grad]']
         for col in numeric_columns:
-            df[col] = pd.to_numeric(df[col], errors=''coerce')
+            df[col] = pd.to_numeric(df[col], errors='coerce')
 
         # Remove rows with NaN values
         df = df.dropna(subset=numeric_columns)
