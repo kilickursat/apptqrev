@@ -198,7 +198,9 @@ def create_torque_rpm_plot(df):
     # Add a truncated vertical line at n_max
     fig.add_trace(go.Scatter(
         x=[n_max, n_max], y=[0, M_cont_value],
-        mode='lines', name='Max RPM', line=dict(color='black', width=2, dash='dash')
+        mode='lines', name='Max RPM', line=dict(color='black
+
+', width=2, dash='dash')
     ))
 
     # Plot calculated torque vs RPM, differentiating between normal and anomaly points
@@ -274,10 +276,16 @@ def main():
             'Relative Time_db': 'Relative time'
         })
 
+        # Display the renamed columns to verify
+        st.write("Columns after renaming:", df.columns.tolist())
+
         # Clean numeric columns
         numeric_columns = ['Working pressure [bar]', 'Revolution [rpm]', 'Thrust force [kN]', 'Chainage', 'Relative time', 'Weg VTP [mm]', 'SR Position [Grad]']
         for col in numeric_columns:
-            df[col] = pd.to_numeric(df[col], errors='coerce')
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors='coerce')
+            else:
+                st.write(f"Warning: Column {col} not found in DataFrame")
 
         # Remove rows with NaN values
         df = df.dropna(subset=numeric_columns)
@@ -327,3 +335,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
