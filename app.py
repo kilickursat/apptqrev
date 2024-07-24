@@ -198,9 +198,7 @@ def create_torque_rpm_plot(df):
     # Add a truncated vertical line at n_max
     fig.add_trace(go.Scatter(
         x=[n_max, n_max], y=[0, M_cont_value],
-        mode='lines', name='Max RPM', line=dict(color='black
-
-', width=2, dash='dash')
+        mode='lines', name='Max RPM', line=dict(color='black', width=2, dash='dash')
     ))
 
     # Plot calculated torque vs RPM, differentiating between normal and anomaly points
